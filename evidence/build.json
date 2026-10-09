@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "claus.launch-graph-build.v1",
+  "checkedAt": "2026-10-09T12:58:40.369Z",
+  "profileVersion": "3.6.0",
+  "blockers": [],
+  "sourceCompiled": true,
+  "officialSchemaValid": true,
+  "officialCliPacked": false,
+  "remotelyAdmitted": false,
+  "deployed": false,
+  "fees": {
+    "strategyBps": 200,
+    "poolBps": 0,
+    "additionalProgrammableRoutedBps": 30
+  },
+  "sourceRevisionVerified": false,
+  "dependencyRuntimesVerified": false,
+  "compiler": "0.8.26+commit.8a97fa7a.Emscripten.clang",
+  "sourceCount": 61,
+  "targetCount": 5,
+  "initialSqrtPriceX96": "500265532822226746854230870154974",
+  "liquidityMode": "token-only",
+  "acquisitionVenue": "opensea",
+  "pricingPolicy": {
+    "mode": "trusted-bot"
+  },
+  "purchaseBotAddress": "0x14C51Aeb6b3B448d79C4e5F5Ff245c9878C4A800",
+  "marketplaceDependencies": {
+    "seaport": "0x0000000000000068F116a894984e2DB1123eB395",
+    "conduitController": "0x00000000F9490004C11Cef243f5400493c00Ad63",
+    "allowedZone": "0x000056f7000000ece9003ca63978907a00ffd100",
+    "runtimeCodeVerified": false
+  },
+  "tokenOnlyHasInitialEthExitReserve": false,
+  "expectedHookPermissionMask": "0x30cc",
+  "standardJsonSha256": "sha256:7579412f1532a99d4347a49ea4a1e31df63cfe5e7d5b239e78444aa2cf90a72c",
+  "next": "Use the checksum-verified official @programmable/launch 4.1.4 packer, then re-read live capabilities and run authenticated preflight. No transaction has been produced or signed."
+}
