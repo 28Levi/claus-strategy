@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "claus.operator-manifest.v1",
+  "chainId": 1,
+  "contracts": {
+    "treasury": { "address": null, "runtimeCodeHash": null },
+    "hook": { "address": null, "runtimeCodeHash": null },
+    "token": { "address": null, "runtimeCodeHash": null },
+    "collection": { "address": "0x80396c7131159eB92E7E84839e51C9887A7A95d9", "runtimeCodeHash": "0x162a8f628e26a75e99b59459595aa3dab79d928bab90263195364a48d91a8212" },
+    "market": { "address": null, "runtimeCodeHash": null },
+    "initializer": { "address": null, "runtimeCodeHash": null },
+    "poolManager": { "address": "0x000000000004444c5dc75cB358380D2e3dE08A90", "runtimeCodeHash": "0x785f1014552b7ce7d5fb7d0c970ca60edee94fd00425d7ca21609acac7ce1293" },
+    "seaport": { "address": "0x0000000000000068F116a894984e2DB1123eB395", "runtimeCodeHash": "0x74499ac0cce14428e4b41541d5e44f28f5a6882a1051d0118867c2a93cd5aec0" },
+    "conduitController": { "address": "0x00000000F9490004C11Cef243f5400493c00Ad63", "runtimeCodeHash": "0x880348b652e7cce91216153a4d0107e70c77b92192f3d7a127ff1f1351961948" },
+    "allowedZone": { "address": "0x000056f7000000ece9003ca63978907a00ffd100", "runtimeCodeHash": "0x9e6930be6759e905574791278e46db4d510c072733fe62a0c7d4e6e76f13e324" }
+  },
+  "acquisition": {
+    "venue": "opensea",
+    "collectionSlug": "contractclaus",
+    "pricingPolicy": "trusted-bot",
+    "purchaseBotAddress": null
+  },
+  "operator": {
+    "maxGasCostWei": "20000000000000000"
+  }
+}

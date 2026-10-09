@@ -1,0 +1,61 @@
+{
+  "purpose": "Read-only observations supporting draft launch parameter choices; no signed or broadcast transaction",
+  "chainId": 1,
+  "rpcSource": "https://ethereum-rpc.publicnode.com",
+  "blockNumber": 26154378,
+  "blockTimestamp": 1791543203,
+  "blockTimestampUTC": "2026-10-09T10:53:23.000Z",
+  "officialNftData": {
+    "source": "https://claus.si/nfts.json",
+    "blockNumber": 26154371,
+    "blockHash": "0x247f31b4ad24c6375bdc010d20f684f690dacb676e93ece3d58cfb122a3ec238",
+    "observedAt": "2026-10-09T10:52:12.195Z",
+    "totalSupply": 300,
+    "available": 0,
+    "activeNativeMarketListingCount": 2
+  },
+  "collection": "0x80396c7131159eB92E7E84839e51C9887A7A95d9",
+  "market": "0x7832B1B34B8dBec979a44634BC095821c91FFc95",
+  "verifiedListings": [
+    { "id": 3, "active": true, "priceWei": "4800000000000000000", "revision": "2" },
+    { "id": 231, "active": true, "priceWei": "5000000000000000000", "revision": "3" }
+  ],
+  "token": "0x1b54E762aa34CF6E28E9C082F2848e28E45DA6b8",
+  "backingTokenAmount": "50000000000000000000000",
+  "poolId": "0xfaa42866f7667e3a1a10d783f3b629171febd45f056336b8df766d74afc0f0f7",
+  "poolKey": {
+    "currency0": "0x0000000000000000000000000000000000000000",
+    "currency1": "0x1b54E762aa34CF6E28E9C082F2848e28E45DA6b8",
+    "fee": 8388608,
+    "tickSpacing": 1,
+    "hooks": "0x37Bfb8AC7C960E558657871D41Ca70E07e7DbfFf"
+  },
+  "stateView": "0x7ffe42c4a5deea5b0fec41c94c136cf115597227",
+  "slot0": {
+    "sqrtPriceX96": "41886966084104399843691098008147",
+    "tick": 125414,
+    "protocolFee": 0,
+    "lpFee": 0
+  },
+  "activeLiquidity": "41862327017174134401487",
+  "fiftyThousandClausSpotValueWei": "178883944021727608",
+  "quote": {
+    "quoter": "0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203",
+    "method": "quoteExactInputSingle",
+    "zeroForOne": false,
+    "exactAmount": "50000000000000000000000",
+    "hookData": "0x",
+    "amountOutWei": "174375670472858294",
+    "gasEstimate": "209113",
+    "methodOfExecution": "eth_call at pinned block; gas cost excluded from amountOut"
+  },
+  "selectedCapWei": "200000000000000000",
+  "sources": [
+    "https://claus.si/read/Hooks/NFTs",
+    "https://claus.si/nfts.json",
+    "https://claus.si/hook-stats.json",
+    "https://developers.uniswap.org/docs/protocols/v4/deployments",
+    "https://etherscan.io/address/0xc50673EDb3A7b94E8CAD8a7d4E0cD68864E33eDF#code",
+    "https://etherscan.io/address/0x1244eae9fa2c064453b5f605d708c0a0bfba4838#code"
+  ]
+}

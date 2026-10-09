@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "claus.programmable-preparation.v1",
+  "chainId": 1,
+  "nftCollection": {
+    "chainId": 1,
+    "address": "0x80396c7131159eB92E7E84839e51C9887A7A95d9"
+  },
+  "launchWallet": null,
+  "metadata": {
+    "name": "Claus Strategy",
+    "symbol": "CLSTR",
+    "description": "Trading fees fund NFT purchases. NFTs are offered at 1.1 times their recorded cost; completed sales fund strategy token buybacks and burns.",
+    "imagePath": null,
+    "imageUri": null,
+    "website": null,
+    "x": null
+  },
+  "economics": {
+    "strategyFeeBps": 200,
+    "saleMultiplierBps": 11000,
+    "initialLiquidityWei": "2",
+    "maxLaunchValueWei": "2",
+    "maxGasCostWei": "20000000000000000",
+    "tokenSupplyBaseUnits": "1000000000000000000000000000",
+    "mode": "token-only"
+  },
+  "officialInputPath": null,
+  "strategy": {
+    "acquisitionVenue": "opensea",
+    "collectionSlug": "contractclaus",
+    "pricingPolicy": { "mode": "trusted-bot" },
+    "purchaseBotAddress": null,
+    "firstTokenId": "1",
+    "tokenCount": 300,
+    "maxPurchasePriceWei": "0",
+    "maxSpendPerEpochWei": "0",
+    "epochDurationSeconds": 86400,
+    "minPurchaseIntervalSeconds": 3600,
+    "maxInventory": 3,
+    "maxBuybackAmountWei": "10000000000000000",
+    "minBuybackIntervalSeconds": 300,
+    "twapWindowSeconds": 1800,
+    "maxSlippageBps": 100
+  },
+  "publication": {
+    "sourceUrl": null,
+    "sourceRevision": null,
+    "sourceLineageNonce": "1",
+    "launchNonce": null,
+    "validAfter": null,
+    "deadline": null
+  }
+}

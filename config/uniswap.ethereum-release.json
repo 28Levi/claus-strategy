@@ -1,0 +1,18 @@
+{
+  "chainId": 1,
+  "routerInterface": "UniversalRouter v2 exact-input tuple without minHopPriceX36",
+  "checkedBlock": 26154629,
+  "checkedBlockHash": "0x5e813eb256463c52afae70691c051b31fb16471881e32e4e74c471dd4c17d0e0",
+  "dependencies": {
+    "router": { "address": "0x66a9893cc07d91d95644aedd05d03f95e1dba8af", "runtimeCodeHash": "0x6a5f46971b50c6e1b7eef97902311444e479d734e4f80ad88367783cf373fe7f" },
+    "quoter": { "address": "0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203", "runtimeCodeHash": "0x06de58fa119c5deaa7a667fb92d3894e25d9160e62fb82c8d86d43b47eefe441" },
+    "permit2": { "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3", "runtimeCodeHash": "0xc67d1657868aa5146eaf24fb879fb1fdec3d2d493b3683a61c9c2f4fb2851131" },
+    "poolManager": { "address": "0x000000000004444c5dc75cB358380D2e3dE08A90", "runtimeCodeHash": "0x785f1014552b7ce7d5fb7d0c970ca60edee94fd00425d7ca21609acac7ce1293" }
+  },
+  "sources": [
+    "https://developers.uniswap.org/docs/protocols/v4/deployments",
+    "https://etherscan.io/address/0x66a9893cc07d91d95644aedd05d03f95e1dba8af#code",
+    "https://etherscan.io/address/0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203#code",
+    "https://developers.uniswap.org/docs/protocols/v4/guides/swapping/swapping"
+  ]
+}

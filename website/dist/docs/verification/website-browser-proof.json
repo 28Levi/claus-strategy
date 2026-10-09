@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-09T12:42:35.793Z",
+  "results": [
+    "Desktop: launch guard without wallet requests, native calculator disclosure, tabs, risk disclosures, contract identity, no overflow",
+    "390px mobile: menu, visible prelaunch status, loaded images, no page overflow"
+  ],
+  "pageErrors": [],
+  "liveWalletTransactions": false
+}

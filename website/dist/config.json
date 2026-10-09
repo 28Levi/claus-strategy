@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "status": "prelaunch",
+  "chainId": 1,
+  "tokenSymbol": "CLSTR",
+  "collection": "0x80396c7131159eB92E7E84839e51C9887A7A95d9",
+  "collectionUrl": "https://opensea.io/collection/contractclaus",
+  "launchWallet": "0x14C51Aeb6b3B448d79C4e5F5Ff245c9878C4A800",
+  "purchaseBot": "0x14C51Aeb6b3B448d79C4e5F5Ff245c9878C4A800",
+  "contracts": null,
+  "rpcUrl": null,
+  "tradeUrl": null,
+  "sourceUrl": null,
+  "firstTokenId": 1,
+  "tokenCount": 300,
+  "feeBps": 200,
+  "resaleBps": 11000,
+  "pricingPolicy": "trusted-bot",
+  "fixedPurchaseCapWei": "0",
+  "fixedDailyCapWei": "0"
+}

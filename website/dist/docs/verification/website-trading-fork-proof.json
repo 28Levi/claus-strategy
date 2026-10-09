@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-09T12:10:24.234Z",
+  "scope": "isolated Hardhat fork of canonical Ethereum UniversalRouter, V4Quoter, Permit2 and PoolManager",
+  "sourceBlock": 26154757,
+  "sourceBlockHash": "0x6283433cc566197b05683a9a0391aabbf53a0ef1d82a3cfdb0a3bf5db8bd0030",
+  "dependencies": {
+    "router": {
+      "address": "0x66a9893cc07d91d95644aedd05d03f95e1dba8af",
+      "runtimeCodeHash": "0x6a5f46971b50c6e1b7eef97902311444e479d734e4f80ad88367783cf373fe7f"
+    },
+    "quoter": {
+      "address": "0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203",
+      "runtimeCodeHash": "0x06de58fa119c5deaa7a667fb92d3894e25d9160e62fb82c8d86d43b47eefe441"
+    },
+    "permit2": {
+      "address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+      "runtimeCodeHash": "0xc67d1657868aa5146eaf24fb879fb1fdec3d2d493b3683a61c9c2f4fb2851131"
+    },
+    "poolManager": {
+      "address": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+      "runtimeCodeHash": "0x785f1014552b7ce7d5fb7d0c970ca60edee94fd00425d7ca21609acac7ce1293"
+    }
+  },
+  "tokenOnlyLaunch": true,
+  "actualBuyOutputEqualsQuote": true,
+  "actualSellOutputEqualsQuote": true,
+  "actualSellExactInput": true,
+  "buyFeeWei": "200000000000000",
+  "sellFeeWei": "98019141647587",
+  "quoteIncludesBuyAndSellFees": true,
+  "exactAllowancesConsumed": true,
+  "badCodeRejected": true,
+  "staleQuoteRejected": true,
+  "impossibleMinimumRejected": true,
+  "treasuryFeesFlushed": true,
+  "websiteExecuteFunctionUsed": true,
+  "websiteExportValidationPassed": true,
+  "mainnetWrites": false
+}

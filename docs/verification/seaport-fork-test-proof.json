@@ -1,0 +1,29 @@
+{
+  "scope": "isolated Hardhat fork; real deployed Seaport and Claus; synthetic locally signed FULL_OPEN order",
+  "checkedAt": "2026-10-09T11:50:14.857Z",
+  "blockNumber": 26154629,
+  "blockHash": "0x5e813eb256463c52afae70691c051b31fb16471881e32e4e74c471dd4c17d0e0",
+  "collection": "0x80396c7131159eB92E7E84839e51C9887A7A95d9",
+  "collectionCodeHash": "0x162a8f628e26a75e99b59459595aa3dab79d928bab90263195364a48d91a8212",
+  "seaport": "0x0000000000000068F116a894984e2DB1123eB395",
+  "conduitController": "0x00000000F9490004C11Cef243f5400493c00Ad63",
+  "allowedZone": "0x000056f7000000ece9003ca63978907a00ffd100",
+  "dependencyCodeHashes": {
+    "seaport": "0x74499ac0cce14428e4b41541d5e44f28f5a6882a1051d0118867c2a93cd5aec0",
+    "conduitController": "0x880348b652e7cce91216153a4d0107e70c77b92192f3d7a127ff1f1351961948",
+    "allowedZone": "0x9e6930be6759e905574791278e46db4d510c072733fe62a0c7d4e6e76f13e324"
+  },
+  "purchasePriceWei": "1600000000000000000",
+  "resalePriceWei": "1760000000000000000",
+  "fixedPurchaseLimitWei": "0",
+  "fixedEpochLimitWei": "0",
+  "custodyVerified": true,
+  "trustedBotVerified": true,
+  "canonicalConduitFulfilled": true,
+  "invalidOpenSeaZoneAuthorizationRejected": true,
+  "openSeaApiUsed": false,
+  "openSeaSignedZoneAuthorizationTested": false,
+  "mainnetWrites": false,
+  "sourceChainId": 1,
+  "executionChainId": 31337
+}

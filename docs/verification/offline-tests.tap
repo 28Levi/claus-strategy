@@ -1,0 +1,485 @@
+TAP version 13
+# Subtest: pinned mainnet Claus custody, reward checkpoints, and 1.1x sale work on a local fork
+ok 1 - pinned mainnet Claus custody, reward checkpoints, and 1.1x sale work on a local fork # SKIP Set CLAUS_FORK_RPC to an Ethereum archive RPC to run the optional local fork test.
+  ---
+  duration_ms: 0.5498
+  type: 'test'
+  ...
+# Subtest: initializer locks the entire launch allocation in its own full-range PoolManager position
+ok 2 - initializer locks the entire launch allocation in its own full-range PoolManager position
+  ---
+  duration_ms: 3936.9751
+  type: 'test'
+  ...
+# Subtest: launch rejects unauthorized callers, missing seed, and repeated or unsolicited callbacks
+ok 3 - launch rejects unauthorized callers, missing seed, and repeated or unsolicited callbacks
+  ---
+  duration_ms: 904.8509
+  type: 'test'
+  ...
+# Subtest: a seed price that strands tokens or native funds reverts the entire launch
+ok 4 - a seed price that strands tokens or native funds reverts the entire launch
+  ---
+  duration_ms: 1060.0526
+  type: 'test'
+  ...
+# Subtest: the initializer rejects a treasury whose hook authority is another account
+ok 5 - the initializer rejects a treasury whose hook authority is another account
+  ---
+  duration_ms: 786.6186
+  type: 'test'
+  ...
+# Subtest: the initializer rejects a hook with a different pool initializer
+ok 6 - the initializer rejects a hook with a different pool initializer
+  ---
+  duration_ms: 980.3719
+  type: 'test'
+  ...
+# Subtest: launch cannot leave a developer token allocation outside the locked pool
+ok 7 - launch cannot leave a developer token allocation outside the locked pool
+  ---
+  duration_ms: 3120.7328
+  type: 'test'
+  ...
+# Subtest: initializer has only one launch entrypoint and authenticated callback, with no withdrawal surface
+ok 8 - initializer has only one launch entrypoint and authenticated callback, with no withdrawal surface
+  ---
+  duration_ms: 107.1011
+  type: 'test'
+  ...
+# Subtest: keeper discovers only currently executable work and enforces gas ceilings
+ok 9 - keeper discovers only currently executable work and enforces gas ceilings
+  ---
+  duration_ms: 1191.8981
+  type: 'test'
+  ...
+# Subtest: keeper refuses another chain, missing bindings and changed contract bytecode
+ok 10 - keeper refuses another chain, missing bindings and changed contract bytecode
+  ---
+  duration_ms: 1000.9549
+  type: 'test'
+  ...
+# Subtest: OpenSea keeper simulates as the immutable bot and buys a signed order above the old cap without exposing custody
+ok 11 - OpenSea keeper simulates as the immutable bot and buys a signed order above the old cap without exposing custody
+  ---
+  duration_ms: 1602.2595
+  type: 'test'
+  ...
+# Subtest: OpenSea keeper skips stale signed orders and preserves available acquisition funds
+ok 12 - OpenSea keeper skips stale signed orders and preserves available acquisition funds
+  ---
+  duration_ms: 1670.689
+  type: 'test'
+  ...
+# Subtest: OpenSea keeper waits for fees and refuses orders above cash even when the permanent price cap is disabled
+ok 13 - OpenSea keeper waits for fees and refuses orders above cash even when the permanent price cap is disabled
+  ---
+  duration_ms: 1365.0488
+  type: 'test'
+  ...
+# Subtest: keeper verifies deployed OpenSea dependencies and rejects changed purchase-bot and zone bindings
+ok 14 - keeper verifies deployed OpenSea dependencies and rejects changed purchase-bot and zone bindings
+  ---
+  duration_ms: 2467.5693
+  type: 'test'
+  ...
+# Subtest: confirmed collection and fee persist while unknown capital cannot produce a launch graph
+ok 15 - confirmed collection and fee persist while unknown capital cannot produce a launch graph
+  ---
+  duration_ms: 2.4373
+  type: 'test'
+  ...
+# Subtest: uncapped configuration requires explicit trusted-bot authority and matched no-ceiling settings
+ok 16 - uncapped configuration requires explicit trusted-bot authority and matched no-ceiling settings
+  ---
+  duration_ms: 0.3986
+  type: 'test'
+  ...
+# Subtest: OpenSea graph cannot silently retain a native marketplace or an unspecified acquisition venue
+ok 17 - OpenSea graph cannot silently retain a native marketplace or an unspecified acquisition venue
+  ---
+  duration_ms: 0.2817
+  type: 'test'
+  ...
+# Subtest: initial pool price is the integer square root of the funded asset ratio
+ok 18 - initial pool price is the integer square root of the funded asset ratio
+  ---
+  duration_ms: 0.132
+  type: 'test'
+  ...
+# Subtest: new unmapped immutables fail closed instead of publishing guessed runtime bytes
+ok 19 - new unmapped immutables fail closed instead of publishing guessed runtime bytes
+  ---
+  duration_ms: 0.3757
+  type: 'test'
+  ...
+# Subtest: actual balanced contracts produce an exact graph with correct funding, fee and immutable bindings
+ok 20 - actual balanced contracts produce an exact graph with correct funding, fee and immutable bindings
+  ---
+  duration_ms: 21874.8017
+  type: 'test'
+  ...
+# Subtest: actual token-only contracts produce an exact graph with correct funding, fee and immutable bindings
+ok 21 - actual token-only contracts produce an exact graph with correct funding, fee and immutable bindings
+  ---
+  duration_ms: 14894.342
+  type: 'test'
+  ...
+# Subtest: live fork verifier requires an explicit pin and environment credentials
+ok 22 - live fork verifier requires an explicit pin and environment credentials
+  ---
+  duration_ms: 1.3413
+  type: 'test'
+  ...
+# Subtest: live fork pin reader makes only chain/header reads and rejects a changed block or chain
+ok 23 - live fork pin reader makes only chain/header reads and rejects a changed block or chain
+  ---
+  duration_ms: 1.4137
+  type: 'test'
+  ...
+# Subtest: normalizes advanced, basic and ordinary Seaport ETH orders without forwarding API transactions
+ok 24 - normalizes advanced, basic and ordinary Seaport ETH orders without forwarding API transactions
+  ---
+  duration_ms: 17.996
+  type: 'test'
+  ...
+# Subtest: preserves buyer-bound restricted zone data and rejects absent or wrong-zone authorization
+ok 25 - preserves buyer-bound restricted zone data and rejects absent or wrong-zone authorization
+  ---
+  duration_ms: 5.6569
+  type: 'test'
+  ...
+# Subtest: normalizes OpenAPI Address-wrapper recipients while still pinning the treasury address
+ok 26 - normalizes OpenAPI Address-wrapper recipients while still pinning the treasury address
+  ---
+  duration_ms: 4.1723
+  type: 'test'
+  ...
+# Subtest: uses the complete signed price, an optional cash budget and no hardcoded floor cap
+ok 27 - uses the complete signed price, an optional cash budget and no hardcoded floor cap
+  ---
+  duration_ms: 6.9586
+  type: 'test'
+  ...
+# Subtest: rejects mismatched targets, recipients, hashes, asset IDs, value, signatures and unsupported selectors
+ok 28 - rejects mismatched targets, recipients, hashes, asset IDs, value, signatures and unsupported selectors
+  ---
+  duration_ms: 23.0192
+  type: 'test'
+  ...
+# Subtest: rejects unsafe numbers, oversized signatures and basic-order routes/tips
+ok 29 - rejects unsafe numbers, oversized signatures and basic-order routes/tips
+  ---
+  duration_ms: 4.4761
+  type: 'test'
+  ...
+# Subtest: discovery requests the adapter as fulfiller and treasury as NFT recipient, selecting the cheapest valid candidate
+ok 30 - discovery requests the adapter as fulfiller and treasury as NFT recipient, selecting the cheapest valid candidate
+  ---
+  duration_ms: 10.0244
+  type: 'test'
+  ...
+# Subtest: losslessly decodes OpenAPI integer wei fields before normalizing a basic order
+ok 31 - losslessly decodes OpenAPI integer wei fields before normalizing a basic order
+  ---
+  duration_ms: 3.9095
+  type: 'test'
+  ...
+# Subtest: discovery skips rejected listings, deduplicates and bounds pagination and fulfillment work
+ok 32 - discovery skips rejected listings, deduplicates and bounds pagination and fulfillment work
+  ---
+  duration_ms: 4.6483
+  type: 'test'
+  ...
+# Subtest: rejects missing credentials, redirects, oversized bodies and invalid JSON without leaking API keys
+ok 33 - rejects missing credentials, redirects, oversized bodies and invalid JSON without leaking API keys
+  ---
+  duration_ms: 5.1459
+  type: 'test'
+  ...
+# Subtest: timeout and repeated cursors fail closed
+ok 34 - timeout and repeated cursors fail closed
+  ---
+  duration_ms: 23.505
+  type: 'test'
+  ...
+# Subtest: an unconfigured template never claims launch readiness
+ok 35 - an unconfigured template never claims launch readiness
+  ---
+  duration_ms: 5.1722
+  type: 'test'
+  ...
+# Subtest: collection and token cannot silently use different chains
+ok 36 - collection and token cannot silently use different chains
+  ---
+  duration_ms: 0.6043
+  type: 'test'
+  ...
+# Subtest: unknown economics and changed markup fail preparation
+ok 37 - unknown economics and changed markup fail preparation
+  ---
+  duration_ms: 0.2167
+  type: 'test'
+  ...
+# Subtest: metadata rejected by the current profile fails before packing
+ok 38 - metadata rejected by the current profile fails before packing
+  ---
+  duration_ms: 0.5089
+  type: 'test'
+  ...
+# Subtest: deployment availability cannot be mistaken for live coin trading
+ok 39 - deployment availability cannot be mistaken for live coin trading
+  ---
+  duration_ms: 1.748
+  type: 'test'
+  ...
+# Subtest: disabled live create or stale manifest cannot pass Robinhood gate
+ok 40 - disabled live create or stale manifest cannot pass Robinhood gate
+  ---
+  duration_ms: 0.1361
+  type: 'test'
+  ...
+# Subtest: Ethereum gate rejects wrong chain and unadmitted profile
+ok 41 - Ethereum gate rejects wrong chain and unadmitted profile
+  ---
+  duration_ms: 0.1008
+  type: 'test'
+  ...
+# Subtest: pinned official Ethereum and Robinhood schemas reject incomplete inputs offline
+ok 42 - pinned official Ethereum and Robinhood schemas reject incomplete inputs offline
+  ---
+  duration_ms: 173.9181
+  type: 'test'
+  ...
+# Subtest: canonical mainnet Seaport buys real Claus on an isolated fork with a synthetic uncapped bot order
+ok 43 - canonical mainnet Seaport buys real Claus on an isolated fork with a synthetic uncapped bot order # SKIP Set CLAUS_FORK_RPC to an Ethereum archive RPC to run the optional Seaport fork test.
+  ---
+  duration_ms: 0.4691
+  type: 'test'
+  ...
+# Subtest: real Seaport purchases at gross 1.6 ETH including fees, custody, 1.76 resale and supply burn
+ok 44 - real Seaport purchases at gross 1.6 ETH including fees, custody, 1.76 resale and supply burn
+  ---
+  duration_ms: 1911.055
+  type: 'test'
+  ...
+# Subtest: real Seaport conduit and restricted-zone purchases are atomic
+ok 45 - real Seaport conduit and restricted-zone purchases are atomic
+  ---
+  duration_ms: 1988.4477
+  type: 'test'
+  ...
+# Subtest: over-budget, wrong collection, variable price, unsigned tips and invalid signatures cannot spend treasury funds
+ok 46 - over-budget, wrong collection, variable price, unsigned tips and invalid signatures cannot spend treasury funds
+  ---
+  duration_ms: 1509.0599
+  type: 'test'
+  ...
+# Subtest: cancellation, counter invalidation, revoked approval and expiry reject before treasury spending
+ok 47 - cancellation, counter invalidation, revoked approval and expiry reject before treasury spending
+  ---
+  duration_ms: 1997.3076
+  type: 'test'
+  ...
+# Subtest: unfillable open orders and fake purchase targets cannot poison the order cache
+ok 48 - unfillable open orders and fake purchase targets cannot poison the order cache
+  ---
+  duration_ms: 1780.6481
+  type: 'test'
+  ...
+# Subtest: uncapped trusted-bot purchases follow higher prices and preserve reserve isolation and affordability
+ok 49 - uncapped trusted-bot purchases follow higher prices and preserve reserve isolation and affordability
+  ---
+  duration_ms: 2016.1015
+  type: 'test'
+  ...
+# Subtest: binding rejects outsiders, wrong executor identities, repeated initialization, and unsolicited fee calls
+ok 50 - binding rejects outsiders, wrong executor identities, repeated initialization, and unsolicited fee calls
+  ---
+  duration_ms: 1449.8842
+  type: 'test'
+  ...
+# Subtest: NFT recipient callbacks cannot reenter any treasury trade or double-count paid ETH
+ok 51 - NFT recipient callbacks cannot reenter any treasury trade or double-count paid ETH
+  ---
+  duration_ms: 1472.2845
+  type: 'test'
+  ...
+# Subtest: recipient rejection atomically restores custody, the position, and both ETH ledgers
+ok 52 - recipient rejection atomically restores custody, the position, and both ETH ledgers
+  ---
+  duration_ms: 1303.5637
+  type: 'test'
+  ...
+# Subtest: forced ETH becomes acquisition budget exactly once and never buyback proceeds
+ok 53 - forced ETH becomes acquisition budget exactly once and never buyback proceeds
+  ---
+  duration_ms: 1064.5114
+  type: 'test'
+  ...
+# Subtest: dishonest executor output reports revert ETH transfer, token delivery, burn, and cooldown together
+ok 54 - dishonest executor output reports revert ETH transfer, token delivery, burn, and cooldown together
+  ---
+  duration_ms: 1595.9918
+  type: 'test'
+  ...
+# Subtest: token-only launch begins with zero native pool reserves, then buys and sells work with 2% fees
+ok 55 - token-only launch begins with zero native pool reserves, then buys and sells work with 2% fees
+  ---
+  duration_ms: 1858.4075
+  type: 'test'
+  ...
+# Subtest: token-only initial price and exact two-wei funding cannot be changed by the launcher
+ok 56 - token-only initial price and exact two-wei funding cannot be changed by the launcher
+  ---
+  duration_ms: 1045.1236
+  type: 'test'
+  ...
+# Subtest: token-only launches reject mismatched bindings and outside developer allocations
+ok 57 - token-only launches reject mismatched bindings and outside developer allocations
+  ---
+  duration_ms: 1469.6724
+  type: 'test'
+  ...
+# Subtest: token-only initializer has no approval, withdrawal, or liquidity removal endpoint
+ok 58 - token-only initializer has no approval, withdrawal, or liquidity removal endpoint
+  ---
+  duration_ms: 1.0616
+  type: 'test'
+  ...
+# Subtest: fees buy cheapest Claus listing, lock custody, sell at 1.1x and burn actual supply
+ok 59 - fees buy cheapest Claus listing, lock custody, sell at 1.1x and burn actual supply
+  ---
+  duration_ms: 1950.9878
+  type: 'test'
+  ...
+# Subtest: zero/under/overpayments and invalid recipients cannot release treasury NFTs
+ok 60 - zero/under/overpayments and invalid recipients cannot release treasury NFTs
+  ---
+  duration_ms: 1262.8206
+  type: 'test'
+  ...
+# Subtest: fixed price cap, per-epoch spending, cooldown and inventory bounds constrain everyone
+ok 61 - fixed price cap, per-epoch spending, cooldown and inventory bounds constrain everyone
+  ---
+  duration_ms: 2234.4981
+  type: 'test'
+  ...
+# Subtest: stale market revision, withdrawn approval and transfer nonce cannot be bypassed
+ok 62 - stale market revision, withdrawn approval and transfer nonce cannot be bypassed
+  ---
+  duration_ms: 1333.5697
+  type: 'test'
+  ...
+# Subtest: failed and dishonest buybacks roll back ETH, balances and cooldown
+ok 63 - failed and dishonest buybacks roll back ETH, balances and cooldown
+  ---
+  duration_ms: 1587.2783
+  type: 'test'
+  ...
+# Subtest: buybacks spend only resale reserve and enforce batch limit plus cooldown
+ok 64 - buybacks spend only resale reserve and enforce batch limit plus cooldown
+  ---
+  duration_ms: 1523.2832
+  type: 'test'
+  ...
+# Subtest: holding rewards, donations and forced ETH cannot become withdrawable credits
+ok 65 - holding rewards, donations and forced ETH cannot become withdrawable credits
+  ---
+  duration_ms: 939.1838
+  type: 'test'
+  ...
+# Subtest: unsolicited safe NFT transfers rejected; no privileged custody or token controls in ABI
+ok 66 - unsolicited safe NFT transfers rejected; no privileged custody or token controls in ABI
+  ---
+  duration_ms: 613.237
+  type: 'test'
+  ...
+# Subtest: same treasury policy supports other ERC721 collections through the reusable offer market
+ok 67 - same treasury policy supports other ERC721 collections through the reusable offer market
+  ---
+  duration_ms: 1199.8357
+  type: 'test'
+  ...
+# Actual v4 cycle: purchase gas 3820922; burned 108923128554864586928174 token wei; minimum 103480792848345867778900.
+# Subtest: real Uniswap v4 buys/sells deliver 2% native ETH fees; NFT sale buys and burns supply
+ok 68 - real Uniswap v4 buys/sells deliver 2% native ETH fees; NFT sale buys and burns supply
+  ---
+  duration_ms: 2302.4031
+  type: 'test'
+  ...
+# Subtest: real v4 hook rejects exact-output, fake callbacks and external buyback callers
+ok 69 - real v4 hook rejects exact-output, fake callbacks and external buyback callers
+  ---
+  duration_ms: 974.8982
+  type: 'test'
+  ...
+# Subtest: buyback rejects adverse spot movement against a mature historical TWAP
+ok 70 - buyback rejects adverse spot movement against a mature historical TWAP
+  ---
+  duration_ms: 1511.8816
+  type: 'test'
+  ...
+# Subtest: oracle honors elapsed ticks, rejects immature history and rounds negative means down
+ok 71 - oracle honors elapsed ticks, rejects immature history and rounds negative means down
+  ---
+  duration_ms: 348.1682
+  type: 'test'
+  ...
+# Subtest: website export refuses an undeployed template and never copies secret manifest fields
+ok 72 - website export refuses an undeployed template and never copies secret manifest fields
+  ---
+  duration_ms: 1.5934
+  type: 'test'
+  ...
+# Subtest: website quotes and executes real Universal Router buys/sells with the 2% strategy hook on an isolated Ethereum fork
+ok 73 - website quotes and executes real Universal Router buys/sells with the 2% strategy hook on an isolated Ethereum fork # SKIP Set CLAUS_TRADING_FORK_RPC to an Ethereum RPC for the optional canonical-router integration.
+  ---
+  duration_ms: 0.5817
+  type: 'test'
+  ...
+# Subtest: website cannot quote or request wallet access before the verified launch
+ok 74 - website cannot quote or request wallet access before the verified launch
+  ---
+  duration_ms: 1.0189
+  type: 'test'
+  ...
+# Subtest: website encoder sends fixed v4 pool exact input, exact settlement, protected output, and a deadline
+ok 75 - website encoder sends fixed v4 pool exact input, exact settlement, protected output, and a deadline
+  ---
+  duration_ms: 19.6247
+  type: 'test'
+  ...
+# Subtest: website rejects unpinned dependencies, different deployments, and zero or weakened output limits
+ok 76 - website rejects unpinned dependencies, different deployments, and zero or weakened output limits
+  ---
+  duration_ms: 4.3105
+  type: 'test'
+  ...
+# Subtest: website rejects malformed amounts and unsafe slippage before contacting a provider
+ok 77 - website rejects malformed amounts and unsafe slippage before contacting a provider
+  ---
+  duration_ms: 2.3134
+  type: 'test'
+  ...
+# Subtest: website checks the RPC chain ID even when ethers is configured with a static network
+ok 78 - website checks the RPC chain ID even when ethers is configured with a static network
+  ---
+  duration_ms: 0.5615
+  type: 'test'
+  ...
+# Subtest: browser dependency pins match the recorded canonical release
+ok 79 - browser dependency pins match the recorded canonical release
+  ---
+  duration_ms: 0.888
+  type: 'test'
+  ...
+1..79
+# tests 79
+# suites 0
+# pass 76
+# fail 0
+# cancelled 0
+# skipped 3
+# todo 0
+# duration_ms 113049.7848

@@ -1,0 +1,1755 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.programmable.market/v4/chains/4663/custom-launch-contract/schema.json",
+  "title": "Programmable Custom Launch Plan V1",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "programmable.custom-launch-plan.v1"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "admissionPolicy": {
+      "const": "programmable.custom-launch-policy.provenance.v1"
+    },
+    "chainId": {
+      "type": "string",
+      "pattern": "^(?:0|[1-9][0-9]*)$",
+      "maxLength": 20,
+      "x-uintBits": 64
+    },
+    "controller": {
+      "$ref": "#/$defs/controller"
+    },
+    "executor": {
+      "enum": [
+        "atomic_graph_v2",
+        "controller_multi_step_v1",
+        "observe_and_stamp_v1",
+        "atomic_execute_and_stamp_v2"
+      ]
+    },
+    "verificationBundle": {
+      "$ref": "#/$defs/verificationBundle"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/component"
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "minItems": 1,
+      "maxItems": 64
+    },
+    "markets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/market"
+      },
+      "minItems": 0,
+      "maxItems": 16
+    },
+    "hookBindings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hookBinding"
+      },
+      "minItems": 0,
+      "maxItems": 16
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      },
+      "minItems": 0,
+      "maxItems": 64
+    },
+    "expectedEffects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/effect"
+      },
+      "minItems": 0,
+      "maxItems": 256
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "maxTotalValue": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        },
+        "maxTotalGas": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        },
+        "validAfter": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 20,
+          "x-uintBits": 64
+        },
+        "deadline": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 20,
+          "x-uintBits": 64
+        }
+      },
+      "required": [
+        "maxTotalValue",
+        "maxTotalGas",
+        "validAfter",
+        "deadline"
+      ],
+      "additionalProperties": false
+    },
+    "feeObligations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/feeObligation"
+      },
+      "minItems": 0,
+      "maxItems": 64
+    },
+    "claimDescriptors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claimDescriptor"
+      },
+      "minItems": 0,
+      "maxItems": 64
+    },
+    "distributionPreferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "enum": [
+              "hooklist",
+              "uniswap_api",
+              "uniswap_labs"
+            ]
+          },
+          "optedIn": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "provider",
+          "optedIn"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "maxItems": 3
+    },
+    "publication": {
+      "$ref": "#/$defs/publication"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "manifestDigest",
+    "chainId",
+    "controller",
+    "executor",
+    "verificationBundle",
+    "components",
+    "actions",
+    "markets",
+    "hookBindings",
+    "dependencies",
+    "expectedEffects",
+    "budgets",
+    "feeObligations",
+    "claimDescriptors",
+    "distributionPreferences"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "addressRef": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$",
+              "x-canonical": "address"
+            }
+          },
+          "required": [
+            "address"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            }
+          },
+          "required": [
+            "componentId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "controller": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "kind": {
+          "enum": [
+            "eoa",
+            "delegated_eoa_v1",
+            "erc1271",
+            "smart_account"
+          ]
+        },
+        "runtimeCodeHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        },
+        "authoritySnapshot": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "address",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "artifactId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "expectedAddress": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "runtimeCodeHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "minItems": 0,
+          "maxItems": 64
+        }
+      },
+      "required": [
+        "componentId",
+        "artifactId",
+        "expectedAddress",
+        "runtimeCodeHash"
+      ],
+      "additionalProperties": false
+    },
+    "call": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "$ref": "#/$defs/addressRef"
+        },
+        "data": {
+          "type": "string",
+          "pattern": "^0x(?:[0-9a-f]{2})*$",
+          "maxLength": 262146
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        },
+        "gasLimit": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        }
+      },
+      "required": [
+        "target",
+        "data",
+        "value",
+        "gasLimit"
+      ],
+      "additionalProperties": false
+    },
+    "eoaCreation": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "null"
+        },
+        "data": {
+          "type": "string",
+          "pattern": "^0x(?:[0-9a-f]{2})*$",
+          "maxLength": 98306,
+          "minLength": 4
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        },
+        "gasLimit": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 78,
+          "x-uintBits": 256
+        }
+      },
+      "required": [
+        "target",
+        "data",
+        "value",
+        "gasLimit"
+      ],
+      "additionalProperties": false
+    },
+    "authority": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "controller"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "platform"
+            },
+            "binding": {
+              "const": "launch_stamp"
+            },
+            "operation": {
+              "const": "stampPlanV1"
+            }
+          },
+          "required": [
+            "kind",
+            "binding",
+            "operation"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "action": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "deployCreate2"
+            },
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "factory": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "salt": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            },
+            "initCode": {
+              "type": "string",
+              "pattern": "^0x(?:[0-9a-f]{2})*$",
+              "maxLength": 98306,
+              "minLength": 4
+            },
+            "execution": {
+              "$ref": "#/$defs/call"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "componentId",
+            "factory",
+            "salt",
+            "initCode",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "deployCreate"
+            },
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "parent": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "nonce": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]*)$",
+              "maxLength": 20,
+              "x-uintBits": 64
+            },
+            "execution": {
+              "$ref": "#/$defs/call"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "componentId",
+            "parent",
+            "nonce",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "deployEoaCreate"
+            },
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "nonce": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]*)$",
+              "maxLength": 20,
+              "x-uintBits": 64
+            },
+            "execution": {
+              "$ref": "#/$defs/eoaCreation"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "componentId",
+            "nonce",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "useExisting"
+            },
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "componentId"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "call"
+            },
+            "execution": {
+              "$ref": "#/$defs/call"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "initializePool"
+            },
+            "marketId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "sqrtPriceX96": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]*)$",
+              "maxLength": 78,
+              "x-uintBits": 160
+            },
+            "execution": {
+              "$ref": "#/$defs/call"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "marketId",
+            "sqrtPriceX96",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "provideLiquidity"
+            },
+            "marketId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "execution": {
+              "$ref": "#/$defs/call"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "marketId",
+            "execution"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actionId": {
+              "type": "string",
+              "pattern": "^(?!platform:)[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 64
+            },
+            "authority": {
+              "$ref": "#/$defs/authority"
+            },
+            "preconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "postconditions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+              },
+              "minItems": 0,
+              "maxItems": 256
+            },
+            "kind": {
+              "const": "verifyEffect"
+            },
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            }
+          },
+          "required": [
+            "actionId",
+            "dependsOn",
+            "authority",
+            "preconditions",
+            "postconditions",
+            "kind",
+            "effectId"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "market": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "kind": {
+          "const": "uniswap_v4"
+        },
+        "poolManager": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "currency0": {
+          "$ref": "#/$defs/addressRef"
+        },
+        "currency1": {
+          "$ref": "#/$defs/addressRef"
+        },
+        "fee": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 8388608
+        },
+        "tickSpacing": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "hooks": {
+          "$ref": "#/$defs/addressRef"
+        }
+      },
+      "required": [
+        "marketId",
+        "kind",
+        "poolManager",
+        "currency0",
+        "currency1",
+        "fee",
+        "tickSpacing",
+        "hooks"
+      ],
+      "additionalProperties": false
+    },
+    "hookBinding": {
+      "type": "object",
+      "properties": {
+        "componentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "poolManager": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "permissions": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16383
+        },
+        "callbackAbi": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "minItems": 0,
+          "maxItems": 256
+        },
+        "hookDataSchema": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "componentId",
+        "poolManager",
+        "permissions",
+        "callbackAbi"
+      ],
+      "additionalProperties": false
+    },
+    "dependency": {
+      "type": "object",
+      "properties": {
+        "dependencyId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "chainId": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 20,
+          "x-uintBits": 64
+        },
+        "address": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "runtimeCodeHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        },
+        "authoritySnapshot": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "dependencyId",
+        "chainId",
+        "address",
+        "runtimeCodeHash"
+      ],
+      "additionalProperties": false
+    },
+    "effect": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "criticality": {
+              "enum": [
+                "critical",
+                "optional",
+                "observed"
+              ]
+            },
+            "kind": {
+              "const": "runtime"
+            },
+            "target": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "runtimeCodeHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "effectId",
+            "criticality",
+            "kind",
+            "target",
+            "runtimeCodeHash"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "criticality": {
+              "enum": [
+                "critical",
+                "optional",
+                "observed"
+              ]
+            },
+            "kind": {
+              "const": "callResult"
+            },
+            "target": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "data": {
+              "type": "string",
+              "pattern": "^0x(?:[0-9a-f]{2})*$",
+              "maxLength": 262146
+            },
+            "expected": {
+              "type": "string",
+              "pattern": "^0x(?:[0-9a-f]{2})*$",
+              "maxLength": 262146
+            }
+          },
+          "required": [
+            "effectId",
+            "criticality",
+            "kind",
+            "target",
+            "data",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "criticality": {
+              "enum": [
+                "critical",
+                "optional",
+                "observed"
+              ]
+            },
+            "kind": {
+              "const": "storage"
+            },
+            "target": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "slot": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            },
+            "expected": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "effectId",
+            "criticality",
+            "kind",
+            "target",
+            "slot",
+            "expected"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "criticality": {
+              "enum": [
+                "critical",
+                "optional",
+                "observed"
+              ]
+            },
+            "kind": {
+              "const": "balance"
+            },
+            "target": {
+              "$ref": "#/$defs/addressRef"
+            },
+            "asset": {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$",
+              "x-canonical": "address"
+            },
+            "minimum": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]*)$",
+              "maxLength": 78,
+              "x-uintBits": 256
+            },
+            "maximum": {
+              "type": "string",
+              "pattern": "^(?:0|[1-9][0-9]*)$",
+              "maxLength": 78,
+              "x-uintBits": 256
+            }
+          },
+          "required": [
+            "effectId",
+            "criticality",
+            "kind",
+            "target",
+            "asset",
+            "minimum",
+            "maximum"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "effectId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "criticality": {
+              "enum": [
+                "critical",
+                "optional",
+                "observed"
+              ]
+            },
+            "kind": {
+              "const": "child"
+            },
+            "componentId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+            },
+            "runtimeCodeHash": {
+              "type": "string",
+              "pattern": "^0x[0-9a-f]{64}$"
+            },
+            "derivation": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "create"
+                    },
+                    "parent": {
+                      "$ref": "#/$defs/addressRef"
+                    },
+                    "nonce": {
+                      "type": "string",
+                      "pattern": "^(?:0|[1-9][0-9]*)$",
+                      "maxLength": 20,
+                      "x-uintBits": 64
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "parent",
+                    "nonce"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "create2"
+                    },
+                    "parent": {
+                      "$ref": "#/$defs/addressRef"
+                    },
+                    "salt": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$"
+                    },
+                    "initCodeHash": {
+                      "type": "string",
+                      "pattern": "^0x[0-9a-f]{64}$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "parent",
+                    "salt",
+                    "initCodeHash"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "effectId",
+            "criticality",
+            "kind",
+            "componentId",
+            "runtimeCodeHash",
+            "derivation"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "witness": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "request",
+            "source",
+            "compiler",
+            "runtime",
+            "runtime_trace",
+            "chain_read",
+            "policy",
+            "provider"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "details"
+      ],
+      "additionalProperties": false
+    },
+    "feeObligation": {
+      "type": "object",
+      "properties": {
+        "obligationId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "mode": {
+          "enum": [
+            "pool_enforced",
+            "programmable_routed",
+            "not_applicable"
+          ]
+        },
+        "policyVersion": {
+          "const": "programmable.custom-launch-fee.v1"
+        },
+        "rateBps": {
+          "enum": [
+            20,
+            0
+          ]
+        },
+        "scope": {
+          "enum": [
+            "proven_pool_paths",
+            "programmable_built_or_routed_qualifying_swaps",
+            "no_qualifying_swap_flow"
+          ]
+        },
+        "recipient": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$",
+              "x-canonical": "address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "marketIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+          },
+          "minItems": 0,
+          "maxItems": 16
+        },
+        "enforcementWitness": {
+          "$ref": "#/$defs/witness"
+        }
+      },
+      "required": [
+        "obligationId",
+        "mode",
+        "policyVersion",
+        "rateBps",
+        "scope",
+        "recipient",
+        "marketIds"
+      ],
+      "additionalProperties": false
+    },
+    "claimDescriptor": {
+      "type": "object",
+      "properties": {
+        "claimId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "chainId": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)$",
+          "maxLength": 20,
+          "x-uintBits": 64
+        },
+        "asset": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "accrualContract": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "read": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "pattern": "^0x(?:[0-9a-f]{2})*$",
+              "maxLength": 262146
+            },
+            "resultType": {
+              "const": "uint256"
+            }
+          },
+          "required": [
+            "data",
+            "resultType"
+          ],
+          "additionalProperties": false
+        },
+        "claim": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "string",
+              "pattern": "^0x(?:[0-9a-f]{2})*$",
+              "maxLength": 262146
+            },
+            "value": {
+              "const": "0"
+            }
+          },
+          "required": [
+            "data",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        "requiredController": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "beneficiary": {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{40}$",
+          "x-canonical": "address"
+        },
+        "immutableRecipient": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^0x[0-9a-fA-F]{40}$",
+              "x-canonical": "address"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtimeCodeHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        },
+        "proof": {
+          "$ref": "#/$defs/witness"
+        }
+      },
+      "required": [
+        "claimId",
+        "chainId",
+        "asset",
+        "accrualContract",
+        "read",
+        "claim",
+        "requiredController",
+        "beneficiary",
+        "immutableRecipient",
+        "runtimeCodeHash",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "publication": {
+      "type": "object",
+      "properties": {
+        "visibility": {
+          "enum": [
+            "listed",
+            "unlisted"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "symbol": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 16384
+        },
+        "imageUrl": {
+          "type": "string",
+          "maxLength": 2048
+        },
+        "primaryComponentId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "primaryMarketId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2048
+          },
+          "minItems": 0,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "visibility"
+      ],
+      "additionalProperties": false
+    },
+    "verificationBundle": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "programmable.exact-source-verification-bundle.v2"
+        },
+        "compilationUnits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/compilationUnit"
+          },
+          "minItems": 1,
+          "maxItems": 16
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "minItems": 1,
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "compilationUnits",
+        "components"
+      ],
+      "additionalProperties": false
+    },
+    "compilationUnit": {
+      "type": "object",
+      "properties": {
+        "compilationUnitId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "compilerVersion": {
+          "type": "string",
+          "pattern": "^0\\.[0-9]+\\.[0-9]+\\+commit\\.[0-9a-f]{8}$"
+        },
+        "standardJsonInputBase64": {
+          "type": "string",
+          "maxLength": 6990508,
+          "minLength": 4,
+          "x-canonical": "base64"
+        },
+        "standardJsonInputSha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "compilationUnitId",
+        "compilerVersion",
+        "standardJsonInputBase64",
+        "standardJsonInputSha256"
+      ],
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "targetId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "compilationUnitId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "sourcePath": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "contractName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+        },
+        "constructorArguments": {
+          "type": "string",
+          "pattern": "^0x(?:[0-9a-f]{2})*$",
+          "maxLength": 262146
+        },
+        "runtimeMaterialization": {
+          "$ref": "#/$defs/runtimeMaterialization"
+        }
+      },
+      "required": [
+        "targetId",
+        "compilationUnitId",
+        "sourcePath",
+        "contractName",
+        "constructorArguments",
+        "runtimeMaterialization"
+      ],
+      "additionalProperties": false
+    },
+    "runtimeMaterialization": {
+      "type": "object",
+      "properties": {
+        "immutableReferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "immutableId": {
+                "type": "string",
+                "pattern": "^(?:0|[1-9][0-9]*)$",
+                "maxLength": 78,
+                "x-uintBits": 256
+              },
+              "ranges": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 24576
+                    },
+                    "length": {
+                      "const": 32
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "length"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 0,
+                "maxItems": 1024
+              }
+            },
+            "required": [
+              "immutableId",
+              "ranges"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 1024
+        },
+        "runtimeImmutables": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "immutableId": {
+                    "type": "string",
+                    "pattern": "^(?:0|[1-9][0-9]*)$",
+                    "maxLength": 78,
+                    "x-uintBits": 256
+                  },
+                  "abiType": {
+                    "const": "address"
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+\\-]{0,255}$"
+                  }
+                },
+                "required": [
+                  "immutableId",
+                  "abiType",
+                  "target"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "immutableId": {
+                    "type": "string",
+                    "pattern": "^(?:0|[1-9][0-9]*)$",
+                    "maxLength": 78,
+                    "x-uintBits": 256
+                  },
+                  "abiType": {
+                    "type": "string",
+                    "maxLength": 256
+                  },
+                  "literal": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "immutableId",
+                  "abiType",
+                  "literal"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 1024
+        },
+        "deployedRuntimeCodeBase64": {
+          "type": "string",
+          "maxLength": 32768,
+          "minLength": 4,
+          "x-canonical": "base64"
+        },
+        "deployedRuntimeCodeHash": {
+          "type": "string",
+          "pattern": "^0x[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "immutableReferences",
+        "runtimeImmutables",
+        "deployedRuntimeCodeBase64",
+        "deployedRuntimeCodeHash"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "x-programmable-manifest-digest": "sha256:bc46db5afd756dbfe679b1befbb0efeec4aff63b531bccdbe62b063a1da62e8b"
+}

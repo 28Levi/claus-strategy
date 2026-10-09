@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs/promises';
+import {assertConfig,exampleAmounts,formatAmount,explorerAddress,explorerTransaction,collectionImage,httpsUrl,parseAmount,verifyPublicDeployment,ROLES} from '../dist/state.mjs';
+const config=JSON.parse(await fs.readFile(new URL('../dist/config.json',import.meta.url),'utf8'));
+test('prelaunch cannot be promoted to live with missing contract evidence or changed policy',()=>{assert.equal(assertConfig(config).status,'prelaunch');assert.throws(()=>assertConfig({...config,status:'live'}),/Unverified/);assert.throws(()=>assertConfig({...config,chainId:31337}),/configuration/);assert.throws(()=>assertConfig({...config,fixedPurchaseCapWei:'1600000000000000000'}),/uncapped/);assert.throws(()=>assertConfig({...config,feeBps:300}),/policy/);});
+test('resale illustration handles higher prices and wei rounding without floating point',()=>{assert.equal(exampleAmounts('1.6').ask,1760000000000000000n);assert.equal(exampleAmounts('3').ask,3300000000000000000n);assert.equal(exampleAmounts('0.000000000000000001').ask,2n);assert.equal(formatAmount(exampleAmounts('1.6').taxableVolume),'80');assert.equal(formatAmount(exampleAmounts('3').taxableVolume),'150');for(const value of ['-1','0','Infinity','1e10','1.0000000000000000001','<script>'])assert.throws(()=>parseAmount(value));});
+test('public links and art identifiers cannot become script or arbitrary protocol URLs',()=>{assert.equal(httpsUrl('javascript:alert(1)'),null);assert.equal(httpsUrl('https://name:secret@host.test'),null);assert.throws(()=>explorerAddress('javascript:alert(1)'));assert.throws(()=>explorerTransaction('bad'));assert.throws(()=>collectionImage('../x'));assert.throws(()=>collectionImage(301));assert.equal(collectionImage(8),'https://claus.si/assets/nfts/png/008.png');});
+
+test('treasury verification queries the RPC chain instead of trusting a static ethers network',async()=>{
+ const live={...config,status:'live',rpcUrl:'https://example.test',contracts:Object.fromEntries(ROLES.map(role=>[role,{address:config.collection,runtimeCodeHash:`0x${'11'.repeat(32)}`}]))};
+ let codeReads=0;const provider={getNetwork:async()=>({chainId:1n}),send:async(method)=>{assert.equal(method,'eth_chainId');return'0x7a69';},getCode:async()=>{codeReads++;return'0x';}};
+ await assert.rejects(verifyPublicDeployment(live,provider,{}),/Ethereum mainnet/);assert.equal(codeReads,0);
+});

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-09T12:42:35.579Z",
+  "scope": "real app DOM with mocked delayed snapshot/quote/execution boundaries",
+  "staleQuoteDiscarded": true,
+  "staleConfirmationRejected": true,
+  "capturedAmountVerified": true,
+  "duplicateSigningFlowBlocked": true,
+  "controlsRestored": true,
+  "pageErrors": [],
+  "realWalletTransactions": false
+}

@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-09T12:44:43.953Z",
+  "design": "sparse character-led layout; character.mjs and site.css",
+  "results": [
+    "Opaque eye coverage during blinking, character pointer response, native keyboard link, motion pause/resume and changing OS motion preference passed; four strategy steps remain readable.",
+    "320px: title/body copy within viewport; no horizontal overflow; buy, menu, strategy, motion, calculator, treasury and contract controls unobstructed.",
+    "390px: title/body copy within viewport; no horizontal overflow; buy, menu, strategy, motion, calculator, treasury and contract controls unobstructed.",
+    "768px: title/body copy within viewport; no horizontal overflow; buy, menu, strategy, motion, calculator, treasury and contract controls unobstructed.",
+    "1440px: title/body copy within viewport; no horizontal overflow; buy, menu, strategy, motion, calculator, treasury and contract controls unobstructed."
+  ],
+  "pageErrors": [],
+  "liveWalletTransactions": false
+}

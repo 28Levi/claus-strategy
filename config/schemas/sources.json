@@ -1,0 +1,22 @@
+{
+  "retrievedAt": "2026-10-06T14:00:48.7318507Z",
+  "sources": [
+    {
+      "file": "programmable-ethereum-pack-config.v3.json",
+      "url": "https://programmable.market/schemas/custom-launch/v3/pack-config.json",
+      "sha256": "sha256:65e80af492582b8e42a440d9bbb23a776af31e22306ec828208959e8a790be15"
+    },
+    {
+      "file": "programmable-robinhood-launch-plan.v1.json",
+      "url": "https://api.programmable.market/v4/chains/4663/custom-launch-contract/schema.json",
+      "sha256": "sha256:7738ea9eacd7a917a236a9d6b5f7b13e4a9a1129dc4c95d06ec624f46f726243"
+    },
+    {
+      "file": "programmable-ethereum-pack-config.v3.6.json",
+      "url": "https://raw.githubusercontent.com/programmablehq/PROGRAMMABLE/3f5d43fb3787a0b880edc685d5b554dae5074174/packages/launch/schemas/programmable-launch-pack-config-v3.6.json",
+      "sha256": "sha256:45e5ba64f47d6912f797b1e2debd9c9f5838d9a8c40a62257aa9d0a74cd2b6e6",
+      "retrievedAt": "2026-10-09T10:50:00.000Z",
+      "release": "programmable-launch-v4.1.4"
+    }
+  ]
+}

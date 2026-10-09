@@ -1,0 +1,17 @@
+node_modules/
+artifacts/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+output/
+research/*
+!research/reference-sources/
+!research/economics-snapshot.json
+cache/
+config/programmable.local.json
+config/deployment.local.json
+website/.openai/
+website/.sites-runtime/
+website/.sites-checkout/

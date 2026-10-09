@@ -1,0 +1,17 @@
+TAP version 13
+# Subtest: canonical mainnet Seaport buys real Claus on an isolated fork with a synthetic uncapped bot order
+ok 1 - canonical mainnet Seaport buys real Claus on an isolated fork with a synthetic uncapped bot order
+  ---
+  duration_ms: 139474.0441
+  type: 'test'
+  ...
+# Fork block 26154629: canonical Seaport acquired real Claus \#1 for 1.6 ETH and the treasury sold for 1.76 ETH. Synthetic order; all writes local.
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 140340.3803

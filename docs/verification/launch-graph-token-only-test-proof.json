@@ -1,0 +1,21 @@
+{
+  "scope": "synthetic fixtures; no production metadata or source-publication claim",
+  "officialCliVersion": "4.1.4",
+  "profileVersion": "3.6.0",
+  "requestSha256": "sha256:e12769a66d3bbdee2e71933e1e5f3e950c0fbb485271d5aa324141e8170818b2",
+  "liquidityMode": "token-only",
+  "nodeVersion": "v24.14.0",
+  "standardJsonSha256": "sha256:7579412f1532a99d4347a49ea4a1e31df63cfe5e7d5b239e78444aa2cf90a72c",
+  "acquisitionVenue": "opensea",
+  "pricingPolicy": {
+    "mode": "trusted-bot"
+  },
+  "purchaseBotAddress": "0x3333333333333333333333333333333333333333",
+  "purchaseLimitWei": "0",
+  "epochLimitWei": "0",
+  "graphTargetCount": 5,
+  "hookMask": "0x30cc",
+  "graphValueWei": "2",
+  "deployed": false,
+  "signed": false
+}

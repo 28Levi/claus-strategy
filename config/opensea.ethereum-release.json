@@ -1,0 +1,22 @@
+{
+  "chainId": 1,
+  "seaportVersion": "1.6",
+  "seaport": "0x0000000000000068F116a894984e2DB1123eB395",
+  "conduitController": "0x00000000F9490004C11Cef243f5400493c00Ad63",
+  "allowedZone": "0x000056f7000000ece9003ca63978907a00ffd100",
+  "sources": [
+    "https://github.com/ProjectOpenSea/seaport#deployments",
+    "https://docs.opensea.io/changelog/seaport-v1-6"
+  ],
+  "checkedAt": "2026-10-09",
+  "runtimeCodeVerified": true,
+  "runtimeVerificationScope": "Ethereum code readback at the pinned block and isolated canonical Seaport/Claus fork execution; not an independent contract audit or live OpenSea API proof",
+  "runtimeVerificationBlock": 26154629,
+  "runtimeVerificationBlockHash": "0x5e813eb256463c52afae70691c051b31fb16471881e32e4e74c471dd4c17d0e0",
+  "runtimeCodeHashes": {
+    "seaport": "0x74499ac0cce14428e4b41541d5e44f28f5a6882a1051d0118867c2a93cd5aec0",
+    "conduitController": "0x880348b652e7cce91216153a4d0107e70c77b92192f3d7a127ff1f1351961948",
+    "allowedZone": "0x9e6930be6759e905574791278e46db4d510c072733fe62a0c7d4e6e76f13e324"
+  },
+  "evidence": "docs/verification/seaport-fork-test-proof.json"
+}
